@@ -1,6 +1,5 @@
 import time
 
-
 def main():
     authorized_drivers = ["Breanden", "Kudzi", "Bryan"]
 
@@ -12,22 +11,23 @@ def main():
     else:
         print(f"\033[94mWelcome, {driver_name}!\033[0m")
 
-    driver()
+    # Check battery level and return if it's too low
+    if not driver():
+        return
+
     battery()
     belt()
-
 
 def driver():
     battery_level = int(input("What is the battery level of the car:  "))
 
     if battery_level < 5:
         print("Car off. Please charge to start your drive.")
-        return
+        return False
     elif 10 < battery_level <= 20:
-        print("Battery low,Please charge so that your journey wont be interrupted")
+        print("Battery low, please charge so that your journey won't be interrupted")
 
-    return
-
+    return True
 
 def battery():
     seatbelt_fastened = False
@@ -42,12 +42,10 @@ def battery():
         else:
             print("\033[91mINVALID RESPONSE. PLEASE ANSWER 'yes' OR 'no'\033[0m")
 
-
 def belt():
     print("\033[5;93mChecking belt-...\033[0m")
 
     manage_car_motion()
-
 
 def manage_car_motion():
     car_motion = True
@@ -75,7 +73,6 @@ def manage_car_motion():
             print("\033[92mSAFE DRIVE\033[0m")
         else:
             print("\033[91mINVALID RESPONSE. PLEASE ANSWER 'yes' OR 'no'\033[0m")
-
 
 if __name__ == "__main__":
     main()
