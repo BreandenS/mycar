@@ -7,7 +7,7 @@ def main():
     driver_name = input("Please enter your name to start the car: ")
 
     if driver_name not in authorized_drivers:
-        print("Car won't start. Unauthorized driver.")
+        print("\033[91mUnauthorized driver❌❌.\033[0m")
         return
     else:
         print(f"\033[94mWelcome, {driver_name}!\033[0m")
@@ -37,10 +37,10 @@ def battery():
         if response == "yes":
             seatbelt_fastened = True
             print("\033[94mSeatbelt fastened, car is starting.\033[0m")
-        else:
+        elif response == "no":
             print("Car will start when you fasten your seatbelt.")
-
-    return
+        else:
+            print("\033[91mINVALID RESPONSE. PLEASE ANSWER 'yes' OR 'no'\033[0m")
 
 
 def belt():
